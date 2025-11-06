@@ -12,34 +12,34 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes: [
-        {
-            path: "",
-            name: "Home",
-            component: HomePage,
-        },
-        {
-            path: "/product",
-            name: "Product",
-            component: ProductPage,
-        },
-        {
-            path: "/category",
-            name: "Category",
-            component: CategoryPage,
-        },
-        {
-            path: "/about",
-            name: "About",
-            component: AboutPage,
-        },
-        {
-            path: "/testimonial",
-            name: "Testimonial",
-            component: TestimonialPage,
-        },
-    ],
+  history: createWebHistory(),
+  routes: [
+    {
+      path: "",
+      name: "Home",
+      component: HomePage,
+    },
+    {
+      path: "/product/",
+      name: "Product",
+      component: ProductPage,
+    },
+    {
+      path: "/categories/:category",
+      name: "Category",
+      component: CategoryPage,
+    },
+    {
+      path: "/about",
+      name: "About",
+      component: AboutPage,
+    },
+    {
+      path: "/testimonial",
+      name: "Testimonial",
+      component: TestimonialPage,
+    },
+  ],
 });
 
 AOS.init();
