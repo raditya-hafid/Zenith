@@ -4,12 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\CategoryDetail;
 use App\Models\Product;
-use App\Models\Variant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
 use function PHPUnit\Framework\isEmpty;
 
 class ProductController extends Controller
@@ -21,16 +18,12 @@ class ProductController extends Controller
     {
         $products = Product::with('variant')->get();
         return view('crud.produk.index', compact('products'));
-        return Inertia::render('crud/produk/Index', [
-            'products' => $products
-        ]);
     }
 
     public function create()
     {
         $kategori = Category::all();
         return view('crud.produk.create', compact('kategori'));
-        return Inertia::render('crud/produk/Create', ['kategori' => Category::all()]);
     }
 
     /**
@@ -80,7 +73,7 @@ class ProductController extends Controller
             }
         });
 
-        return redirect()->route('dashboard.manage.produk.index')
+        return redirect()->route('manage.produk.index')
             ->with('success', 'Produk dan variannya berhasil disimpan!');
     }
 
@@ -91,12 +84,6 @@ class ProductController extends Controller
         $kategori = Category::all();
 
         return view('crud.produk.edit', compact('produk', 'kategori'));
-        return Inertia::render('crud/produk/Edit', [
-            'produk' => $produk->load('variant'),
-            'variants' => $variants,
-            'categories' => $categories,
-            'kategori' => Category::all(),
-        ]);
     }
 
     /**
@@ -201,7 +188,7 @@ class ProductController extends Controller
         }
 
         $produk->update($request->only('nama_produk', 'merek', 'deskripsi'));
-        return redirect()->route('dashboard.manage.produk.index')->with('success', 'Produk berhasil diperbarui!');
+        return redirect()->route('manage.produk.index')->with('success', 'Produk berhasil diperbarui!');
     }
 
     /**
