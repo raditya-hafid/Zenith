@@ -24,3 +24,5 @@ Homestead.yaml
 Thumbs.db
 /bootstrap
 /storage
+
+vuejs-fe/node_modules/
