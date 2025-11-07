@@ -5,46 +5,52 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+// use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Http\JsonResponse;
+// use Inertia\Inertia;
+// use Inertia\Response;
 
 class RegisteredUserController extends Controller
 {
     /**
-     * Menampilkan halaman registrasi (Blade).
+     * Show the registration page.
      */
-    public function create()
-    {
-        // Pastikan file: resources/views/Register.blade.php
-        return view('auth.register');
-    }
+    // public function create(): Response
+    // {
+    //     return Inertia::render('auth/Register');
+    // }
 
     /**
-     * Menangani proses registrasi.
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): JsonResponse
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'password' => ['required', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            // penting: gunakan Hash agar password tidak tersimpan mentah
-            'password' => Hash::make($validated['password']),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
-        $request->session()->regenerate();
+        // Auth::login($user);
 
-        return redirect()->route('dashboard');
+        // $request->session()->regenerate();
+
+        return response()->json([
+            'message' => 'Registrasi berhasil. Silakan login.',
+            'user' => $user
+        ], 201); // 201 artinya "Created"
     }
 }
