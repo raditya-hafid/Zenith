@@ -16,27 +16,22 @@ const router = createRouter({
   routes: [
     {
       path: "",
-      name: "Home",
       component: HomePage,
     },
     {
       path: "/product/",
-      name: "Product",
       component: ProductPage,
     },
     {
       path: "/categories/:category",
-      name: "Category",
       component: CategoryPage,
     },
     {
       path: "/about",
-      name: "About",
       component: AboutPage,
     },
     {
       path: "/testimonial",
-      name: "Testimonial",
       component: TestimonialPage,
     },
   ],
