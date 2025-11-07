@@ -8,9 +8,9 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\VariantController;
 use App\Http\Controllers\Api\UserRoleController;
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome');
-// })->name('home');
+Route::get('/', function () {
+    return view('vueApp');
+})->name('home');
 
 // Route::get('dashboard', function () {
 //     return Inertia::render('Dashboard');
