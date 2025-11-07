@@ -26,3 +26,4 @@ Thumbs.db
 /storage
 
 vuejs-fe/node_modules/
+vuejs-fe/package-lock.json
