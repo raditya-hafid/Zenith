@@ -10,6 +10,7 @@ import TestimonialPage from "./components/Pages/TestimonialPage.vue";
 
 import "aos/dist/aos.css";
 import AOS from "aos";
+import Register from "./views/Register.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -33,6 +34,10 @@ const router = createRouter({
     {
       path: "/testimonial",
       component: TestimonialPage,
+    },
+    {
+      path: "/register",
+      component: Register,
     },
   ],
 });
