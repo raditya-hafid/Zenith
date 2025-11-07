@@ -24,9 +24,8 @@ Homestead.yaml
 Thumbs.db
 /bootstrap
 /storage
-<<<<<<< HEAD
+
 
 vuejs-fe/node_modules/
 vuejs-fe/package-lock.json
-=======
->>>>>>> 104813e57da9d291bff5ef441de89638b7793637
+
